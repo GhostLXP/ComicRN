@@ -13,7 +13,6 @@ export default class ComicWatchingFocusPage extends PureComponent {
             <View 
                 style = {{
                     flexDirection: 'row',
-
                     justifyContent: 'flex-start',
                 }}
             >
