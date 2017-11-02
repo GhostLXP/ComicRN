@@ -32,6 +32,7 @@ export default class ComicOriginalBookCell extends PureComponent {
                 justifyContent: 'flex-start',
                 marginLeft:15,
                 marginRight:15,
+                paddingTop:6,
             }}>
                 <Image source={{ uri : getCoverUrlByBid(item.data.bid)}} style={styles.cover}>
                 </Image>
@@ -114,7 +115,7 @@ const styles = StyleSheet.create({
     	marginLeft: 15,
     	marginRight: 15,
     	marginTop:12,
-    	marginBottom:12,
+    	marginBottom:6,
     	alignItems: 'flex-end',
     	},
     title: {

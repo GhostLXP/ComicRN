@@ -12,7 +12,10 @@
  	View,
  	StyleSheet,
  	Image,
- 	TouchableHighlight
+ 	TouchableHighlight,
+ 	ToastAndroid,
+    Platform,
+    AlertIOS,
  } from 'react-native'
 
  import {getCoverUrlByBid} from '../../common/tools'
@@ -25,6 +28,12 @@
  	}
  	onPressItem(id){
        console.log("书单"+id)
+        var msg="书单 id : "+id
+       	      if (Platform.OS === 'android') {
+                   ToastAndroid.show(msg, ToastAndroid.SHORT)
+                 } else {
+                   AlertIOS.alert(msg);
+                 }
     }
  	_renderItem({item}) {
  		return (

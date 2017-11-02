@@ -8,7 +8,10 @@ import {
 	View,
 	Image,
 	StyleSheet,
-	TouchableHighlight
+	TouchableHighlight,
+	ToastAndroid,
+    Platform,
+    AlertIOS,
 } from 'react-native';
 
 import Color from '../../common/color'
@@ -48,6 +51,12 @@ export default class ComicCommonCell extends PureComponent {
 	}
 	onPressButton(){
 	    console.log("去评论区逛逛")
+	        var msg="书评区"
+               	      if (Platform.OS === 'android') {
+                           ToastAndroid.show(msg, ToastAndroid.SHORT)
+                         } else {
+                           AlertIOS.alert(msg);
+                         }
 	}
 }
 

@@ -13,7 +13,10 @@
  	StyleSheet,
  	Image,
  	TouchableHighlight,
- 	TouchableOpacity
+ 	TouchableOpacity,
+ 	ToastAndroid,
+    Platform,
+    AlertIOS,
  } from 'react-native'
 
  import {getComicCoverUrlByBid} from '../../common/tools'
@@ -26,9 +29,21 @@
  	}
     onPressItem(id){
         console.log('书评id:'+id)
+        var msg="书评 id :"+id
+        	if (Platform.OS === 'android') {
+            ToastAndroid.show(msg, ToastAndroid.SHORT)
+            } else {
+              AlertIOS.alert(msg);
+        }
     }
     onPressUser(id){
             console.log('userid:'+id)
+            var msg="用户 id :"+id
+                    	if (Platform.OS === 'android') {
+                        ToastAndroid.show(msg, ToastAndroid.SHORT)
+                        } else {
+                          AlertIOS.alert(msg);
+                    }
     }
  	_renderItem({item}) {
  		return (

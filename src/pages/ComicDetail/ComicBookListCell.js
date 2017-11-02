@@ -8,7 +8,10 @@ import {
 	View,
 	Image,
 	StyleSheet,
-	TouchableHighlight
+	TouchableHighlight,
+	ToastAndroid,
+    Platform,
+    AlertIOS,
 } from 'react-native';
 
 import Color from '../../common/color'
@@ -48,6 +51,12 @@ export default class ComicBookListCell extends PureComponent {
 	}
 	onPressButton(){
 	    console.log("查看更多")
+	        var msg="收录了本书的书单"
+               	      if (Platform.OS === 'android') {
+                           ToastAndroid.show(msg, ToastAndroid.SHORT)
+                         } else {
+                           AlertIOS.alert(msg);
+                         }
 	}
 }
 
