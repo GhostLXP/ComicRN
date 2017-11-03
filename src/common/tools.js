@@ -41,3 +41,19 @@ export function getComicDetailUrlByBid(comicId) {
 
 }
 
+export function getBookDetailUrlByBid(bid) {
+//http://android.reader.qq.com/v6_5_6/nativepage/book/detail?bid=466473&pagestamp=1
+    let URL_VERSION = "6_5_6";
+    let DOMAINNAME_COMIC = "http://android.reader.qq.com/";
+//    DOMAINNAME_COMIC = "http://ptcartoon.reader.qq.com/";//测试环境
+    let COMIC_DETAIL_URL = DOMAINNAME_COMIC  + "v" + URL_VERSION + "/nativepage/book/detail";
+    let sb=COMIC_DETAIL_URL;
+	sb += "?bid="
+	sb += bid
+
+	return sb;
+
+}
+
+
+

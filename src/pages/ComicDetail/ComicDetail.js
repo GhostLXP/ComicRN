@@ -19,19 +19,24 @@ import ComicScrollableBooksCell from './ComicScrollableBooksCell'
 import ComicOriginalBookCell from './ComicOriginalBookCell'
 import ComicBookListCell from './ComicBookListCell'
 import {getComicDetailUrlByBid} from '../../common/tools'
+import {getBookDetailUrlByBid} from '../../common/tools'
 
 class ComicDetail extends PureComponent {
 
     state : {
         dataList : Array<Object>,
         refreshing : boolean,
+        cid:string,
+        type:string,
     }
 
     constructor(props: Object){
         super(props);
+        var id=this.props.navigation.state.params.id
         this.state = {
             dataList : [],
             refreshing : false,
+            cid:id,
         }
 
         { (this : any).requestData = this.requestData.bind(this) }
@@ -51,7 +56,8 @@ class ComicDetail extends PureComponent {
         try {
 //            let url="http://cartoon.reader.qq.com/v6_5_6/nativepage/cartoon/detail?comicId=7788819203465002"
 //            let url="http://cartoon.reader.qq.com/v6_5_6/nativepage/cartoon/detail?comicId=7799207404128002"
-            let url=getComicDetailUrlByBid(7788819203465002)
+//            let url=getComicDetailUrlByBid(7788819203465002)
+                        let url=getComicDetailUrlByBid(this.state.cid)
             let response = await fetch(url,{
                 method:"GET",
                 headers:{
@@ -82,7 +88,6 @@ class ComicDetail extends PureComponent {
             })
             let json = await response.json()
             console.log('ComicDetail:', json)
-            console.log('导航:',this.props.navigation)
             let dataList = []
 
             for (let i in json.data) {
@@ -109,7 +114,9 @@ class ComicDetail extends PureComponent {
         }
 
     }
-
+    _onRefresh(){
+        this.componentDidMount()
+    }
     _renderItem (info) {
 
         switch(info.item.module)
@@ -118,7 +125,8 @@ class ComicDetail extends PureComponent {
             {
                 return <View>
                             <ComicInfoCell style = {styles.comicInfo}
-                                            item = { info.item.data } />
+                                            item = { info.item.data }
+                                            />
                        </View>
             }
                 break;
@@ -157,6 +165,7 @@ class ComicDetail extends PureComponent {
                             <ComicAdvCell
                                 style = {styles.advCell}
                                 item = {info.item}
+                                navigation={this.props.navigation}
                             />
                         </View>
             }
@@ -167,6 +176,7 @@ class ComicDetail extends PureComponent {
                             <ComicOriginalBookCell
                                 style = {styles.originalBook}
                                 item = {info.item}
+                                navigation={this.props.navigation}
                             />
                         </View>
             }
@@ -177,6 +187,7 @@ class ComicDetail extends PureComponent {
                             <ComicScrollableBooksCell
                                 style = {styles.scrollableCell}
                                 item = {info.item}
+                                navigation={this.props.navigation}
                             />
                         </View>
             }
@@ -232,6 +243,7 @@ class ComicDetail extends PureComponent {
                 refreshing = { this.state.refreshing }
                 showsVerticalScrollIndicator ={false}
                 // keyExtractor = { this.keyExtractor }
+                onRefresh={this._onRefresh.bind(this)}
                 renderItem = { this._renderItem.bind(this) }
             />
         </View>
@@ -239,16 +251,6 @@ class ComicDetail extends PureComponent {
     }
 }
 
-//const ComicDetailStackNavigator = StackNavigator(
-//    {
-//        ComicDetail: {screen: ComicDetail},
-////        DiscoverDetail: {screen: ComicDetail},
-//    },
-//    {
-//        initialRouteName: 'ComicDetail',
-//        headerMode:'none',
-//    }
-//);
 
 // define your styles
 const styles = StyleSheet.create({

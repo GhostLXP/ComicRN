@@ -23,13 +23,15 @@
  	keyExtractor(item) {
  		return item.cid;
  	}
-    onPressImg(id){
-        console.log(id)
+    onPressImg(cid){
+        console.log(cid)
+        var thiz=this
+        thiz.props.navigation.navigate('ComicDetail',{id:cid})
     }
  	_renderItem({item}) {
  		return (
  			<View style = {styles.singleBookView}>
- 			    <TouchableOpacity  onPress={()=> this.onPressImg(item.title)} activeOpacity ={0.5}>
+ 			    <TouchableOpacity  onPress={()=> this.onPressImg(item.cid)} activeOpacity ={0.5}>
  				<Image 
  				source = {{ uri:getComicCoverUrlByBid(item.cid) }}
  				style = {styles.bookCover}>

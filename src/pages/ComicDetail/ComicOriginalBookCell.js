@@ -4,7 +4,16 @@
  */
 
 import React, { PureComponent } from 'react'
-import {StyleSheet, Image, Text, View ,TouchableHighlight} from 'react-native'
+import {
+    StyleSheet,
+    Image,
+    Text,
+    View ,
+    TouchableHighlight,
+    ToastAndroid,
+    Platform,
+    AlertIOS,
+    } from 'react-native'
 import screen from '../../common/screen'
 import {getCoverUrlByBid} from '../../common/tools'
 import Color from '../../common/color'
@@ -26,7 +35,7 @@ export default class ComicOriginalBookCell extends PureComponent {
             		{item.subTitle}
             	</Text>
             </View>
-            <TouchableHighlight  onPress={()=> this.onPressButton()} activeOpacity ={0.5} underlayColor={"#e3e4e5"} >
+            <TouchableHighlight  onPress={()=> this.onPressButton(item.data.bid)} activeOpacity ={0.5} underlayColor={"#e3e4e5"} >
             <View style={{
                 flexDirection: 'row',
                 justifyContent: 'flex-start',
@@ -80,8 +89,14 @@ export default class ComicOriginalBookCell extends PureComponent {
             )
 
     }
-    onPressButton(){
+    onPressButton(id){
         console.log("漫画原著")
+        var msg = "漫画原著"
+        if (Platform.OS === 'android') {
+        	ToastAndroid.show(msg, ToastAndroid.SHORT)
+        } else {
+        	AlertIOS.alert(msg);
+        }
     }
 }
 

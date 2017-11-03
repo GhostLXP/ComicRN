@@ -13,10 +13,14 @@ import {
 
 import ComicDetail from './src/pages/ComicDetail/ComicDetail'
 import ComicWatchingFocusPage from './src/pages/comic/ComicWatchingFocusPage'
+import ComicMainPage from './src/pages/comic/ComicMainPage'
 
 
 //导航路由表注册
 const App = StackNavigator({
+    ComicMainPage: {
+        screen: ComicMainPage
+    },
     ComicDetail: {
         screen: ComicDetail
     },
@@ -24,7 +28,7 @@ const App = StackNavigator({
         screen: ComicWatchingFocusPage
     },
 }, {
-    initialRouteName: 'ComicDetail',
+    initialRouteName: 'ComicMainPage',
     headerMode: 'none'
 });
 

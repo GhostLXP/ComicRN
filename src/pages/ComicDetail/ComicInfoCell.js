@@ -15,6 +15,12 @@ export default class ComicInfoCell extends PureComponent {
 
         let item = this.props.item
         console.log('ComicInfoCell',item)
+        var guiDes=""//应为有的返回json没有该字段
+        try{
+            guiDes=item.guide.desc
+        }catch(e){
+            guiDes=""
+        }
 
         if (item.headUrl) {
             return(
@@ -33,11 +39,11 @@ export default class ComicInfoCell extends PureComponent {
                         </Text>
                         <Text numberOfLines ={1}
                               style = {styles.price}>
-                            {item.guide.desc + item.priceDesc}
+                            {item.priceDesc}
                         </Text>
                         <Text numberOfLines ={1}
                               style = {styles.guide}>
-                            {item.guide.desc}
+                            {guiDes}
                         </Text>
                     </Image>
                 </Image>
@@ -83,7 +89,7 @@ export default class ComicInfoCell extends PureComponent {
                          style={styles.guide1}
                          numberOfLines ={1}
                     >
-                         {item.guide.desc}
+                         {guiDes}
                     </Text>
                 </View>
             </View>

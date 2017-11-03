@@ -31,7 +31,8 @@ export default class ComicScrollableBooksCell extends PureComponent {
 
 				<ComicScrollableItemsComponent 
 				items = {item.data}
-				style = {styles.scrollView}>
+				style = {styles.scrollView}
+				navigation={this.props.navigation}>
 				</ComicScrollableItemsComponent>
 
 				<ComicCellSeparatorComponent/>
