@@ -17,5 +17,5 @@
         android:layout_height="150dp"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:text="Hello World!"/>
+        android:text="React Native"/>
 </RelativeLayout>
